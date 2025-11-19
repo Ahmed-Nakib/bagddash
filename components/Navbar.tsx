@@ -1,5 +1,4 @@
 import { BookOpenIcon, InfoIcon, LifeBuoyIcon, UserIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
   NavigationMenu,
@@ -16,6 +15,7 @@ import {
 } from "@/components/ui/popover"
 import Link from "next/link"
 import Search from "@/components/Search"
+import { cn } from "@/components/lib/utils"
 
 // Navigation links array to be used in both desktop and mobile menus
 const navigationLinks = [

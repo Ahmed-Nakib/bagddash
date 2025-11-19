@@ -8,8 +8,8 @@ import React, {
   TouchEvent,
 } from "react";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import { useIsMobile } from "@/components/hooks/use-mobile";
 import { Card, CardContent } from "@/components/ui/card";
-import { useIsMobile } from "@/src/components/hooks/use-mobile";
 export interface ThreeDCarouselItem {
   id: number;
   title: string;
