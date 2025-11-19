@@ -1,28 +1,36 @@
-
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 function LatestProduct() {
-    return ( 
-        <div>
-            <a href="#" className="group relative block bg-black">
-  <div className="relative p-4 sm:p-6 lg:p-8">
-    <p className="text-sm font-medium tracking-widest text-pink-500 uppercase">Developer</p>
+  return (
+    <div className="bg-black/50 p-4 sm:p-6 lg:p-8">
 
-    <p className="text-xl font-bold text-white sm:text-2xl">Tony Wayne</p>
+      {/* Image must include width & height or use fill */}
+      <div className="relative w-full h-64">
+        <Image
+          src="/t-shirt.png"
+          alt="Product Photo"
+          fill
+          className="object-contain"
+        />
+      </div>
 
-    <div className="mt-32 sm:mt-48 lg:mt-64">
-      <div className="translate-y-8 transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
-        <p className="text-sm text-white">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis perferendis hic
-          asperiores quibusdam quidem voluptates doloremque reiciendis nostrum harum.
-          Repudiandae?
+      <div>
+        <p className="text-sm font-medium tracking-widest text-pink-500 uppercase">
+          Developer
+        </p>
+
+        <p className="text-xl font-bold text-white sm:text-2xl">
+          Tony Wayne
         </p>
       </div>
+      <div className="grid  gap-y-2.5 mt-2.5">
+        <Button >Add Cart</Button>
+        <Button >Buy Now</Button>
+      </div>
+
     </div>
-  </div>
-</a>
-            
-        </div>
-     );
+  );
 }
 
 export default LatestProduct;

@@ -12,7 +12,7 @@ const caseStudies = [
     description:
       "Wearable textile sensors designed for continuous heart and respiration monitoring.",
     tags: ["Healthcare", "Smart Fabric", "Wearables"],
-    imageUrl: "/slide.png",
+    imageUrl: "/slide-1.png",
     link: "/case/1",
   },
   {
@@ -22,7 +22,7 @@ const caseStudies = [
     description:
       "Real-time athletic tracking using embedded textile pressure sensors.",
     tags: ["Sports", "IoT", "Tracking"],
-    imageUrl: "/images/sports.jpg",
+    imageUrl: "/slide-2.png",
     link: "/case/2",
   },
   {
@@ -32,7 +32,7 @@ const caseStudies = [
     description:
       "Real-time athletic tracking using embedded textile pressure sensors.",
     tags: ["Sports", "IoT", "Tracking"],
-    imageUrl: "/images/sports.jpg",
+    imageUrl: "/slide-3.png",
     link: "/case/2",
   },
   {
@@ -42,7 +42,7 @@ const caseStudies = [
     description:
       "Real-time athletic tracking using embedded textile pressure sensors.",
     tags: ["Sports", "IoT", "Tracking"],
-    imageUrl: "/images/sports.jpg",
+    imageUrl: "/slide-4.png",
     link: "/case/2",
   },
 ];
