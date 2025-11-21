@@ -1,4 +1,4 @@
-import { BookOpenIcon, InfoIcon, LifeBuoyIcon, UserIcon } from "lucide-react"
+import { BookOpenIcon, InfoIcon, LifeBuoyIcon, ShoppingCart, UserIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   NavigationMenu,
@@ -257,6 +257,9 @@ export default function Navbar() {
         </div>
         {/* Right side */}
         <div className="flex items-center gap-2">
+            <Link href={"/cart"} className="cursor-pointer">
+              <ShoppingCart />
+            </Link>
             <button className="cursor-pointer">
               <UserIcon />
             </button>
