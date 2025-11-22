@@ -19,7 +19,7 @@ const Product = async () => {
       {products.map((product: Product) => (
         <div key={product.id} className="border p-4 rounded-lg shadow hover:shadow-lg transition">
         <Link
-        href={`/product/${product.id}`}
+        href={`/products/${product.id}`}
         >
           <Image
             src={product.image}

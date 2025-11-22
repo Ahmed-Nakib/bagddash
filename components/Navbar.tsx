@@ -20,7 +20,7 @@ import { cn } from "@/components/lib/utils"
 // Navigation links array to be used in both desktop and mobile menus
 const navigationLinks = [
   { href: "/", label: "Home" },
-  { href: "/product", label: "Product" },
+  { href: "/products", label: "Product" },
   { href: "/post", label: "Post" },
   {
     label: "Men",
