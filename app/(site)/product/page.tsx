@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import getAllProducts from "@/lib/getAllProducts";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -12,9 +13,7 @@ interface Product {
 }
 
 const Product = async () => {
-  const res = await fetch("https://fakestoreapi.com/products");
-  const products = await res.json();
-
+  const products = await getAllProducts();
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 py-10 px-5">
       {products.map((product: Product) => (
