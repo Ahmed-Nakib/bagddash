@@ -57,7 +57,7 @@ export default function ProductsAdmin() {
       <h1 className="text-2xl font-bold mb-4">Manage Products</h1>
 
       <Link
-        href="/create"
+        href="/dashboard/create"
         className="bg-blue-600 text-white p-2 rounded inline-block mb-4"
       >
         + Add Product
