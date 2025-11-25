@@ -20,7 +20,6 @@ export default function ProductsAdmin() {
       const res = await fetch("/api/products");
       const data = await res.json();
 
-      // Check if API returned array or object with products
       if (Array.isArray(data)) {
         setProducts(data);
       } else if (data.products && Array.isArray(data.products)) {
@@ -35,16 +34,28 @@ export default function ProductsAdmin() {
   };
 
   const del = async (id: string) => {
+    const token = localStorage.getItem("admin-token");
+    if (!token) return alert("Missing admin token!");
+
     try {
-      await fetch(`/api/products/${id}`, {
+      const res = await fetch(`/api/products/${id}`, {
         method: "DELETE",
         headers: {
-          "x-admin-token": localStorage.getItem("admin-token") || "",
+          "x-admin-token": token,
         },
       });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        return alert("Delete failed: " + (data.error || "Unknown error"));
+      }
+
+      alert("Product deleted successfully!");
       load(); // refresh list after delete
     } catch (err) {
       console.error("Failed to delete product:", err);
+      alert("Delete failed: " + (err as any).message);
     }
   };
 

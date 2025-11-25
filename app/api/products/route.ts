@@ -19,13 +19,11 @@ function checkAdmin(req: Request) {
 export async function POST(req: Request) {
   try {
     if (!checkAdmin(req)) {
-      return NextResponse.json(
-        { success: false, error: "Unauthorized" },
-        { status: 401 }
-      );
+      return NextResponse.json({ success: false, error: "Unauthorized" }, { status: 401 });
     }
 
     await connectDB();
+
     const form = await req.formData();
 
     const file = form.get("image") as File | null;
