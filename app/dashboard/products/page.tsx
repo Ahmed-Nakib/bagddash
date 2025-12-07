@@ -34,7 +34,7 @@ export default function ProductsAdmin() {
   };
 
   const del = async (id: string) => {
-    const token = localStorage.getItem("admin-token");
+    const token = localStorage.getItem("admin_token");
     if (!token) return alert("Missing admin token!");
 
     try {

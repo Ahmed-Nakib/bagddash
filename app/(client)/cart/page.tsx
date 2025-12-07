@@ -84,7 +84,7 @@ export default function CartPage() {
           />
           Cash on Delivery (+$5)
         </label>
-        <label className="flex items-center gap-2">
+        {/* <label className="flex items-center gap-2">
           <input
             type="radio"
             name="payment"
@@ -93,7 +93,7 @@ export default function CartPage() {
             onChange={() => setPaymentMethod("online")}
           />
           Online Payment
-        </label>
+        </label> */}
       </div>
 
       <div className="mt-4 text-right space-y-2">

@@ -16,7 +16,7 @@ export default function CheckoutPopup({ onClose, total }: CheckoutPopupProps) {
   // Redux cart state
   const cartItems = useSelector((state: any) => state.cart.items);
 
-  const deliveryCost = 5;
+  const deliveryCost = 75;
   const finalTotal = paymentMethod === "cod" ? total + deliveryCost : total;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

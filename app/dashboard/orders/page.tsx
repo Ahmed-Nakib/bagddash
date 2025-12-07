@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function AdminOrdersPage() {
@@ -29,12 +30,12 @@ export default function AdminOrdersPage() {
             <p><b>Total:</b> ${order.total}</p>
 
             <div className="flex gap-2 mt-2">
-              <a
-                href={`/admin/orders/${order._id}`}
+              <Link
+                href={`/dashboard/orders/${order._id}`}
                 className="px-3 py-1 bg-blue-500 text-white rounded"
               >
                 View
-              </a>
+              </Link>
 
               <button
                 className="px-3 py-1 bg-red-600 text-white rounded"

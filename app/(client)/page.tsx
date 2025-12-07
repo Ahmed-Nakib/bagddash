@@ -1,10 +1,10 @@
-import HeroSlider from "@/components/HeroSlider";
+import { CarouselHero } from "@/components/Carousel";
 import TopProduct from "@/components/TopProduct";
 
 function HomePage() {
     return ( 
         <div>
-          <HeroSlider />
+          <CarouselHero />
           <TopProduct />
         </div>
      );
