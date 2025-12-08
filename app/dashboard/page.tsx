@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import getAllProducts from "@/lib/getAllProducts";
 
+export const dynamic = "force-dynamic";
 
 export default async function ProductsPage() {
   const products = await getAllProducts(); // Server Component fetching data
