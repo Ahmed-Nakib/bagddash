@@ -6,8 +6,7 @@ import { useRouter, useParams } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/features/cart/cartSlice";
 import CheckoutPopup from "@/components/CheckoutPopup";
-import type { Product as CartProduct } from "@/features/cart/cartSlice";
-
+import {Product as CartProduct} from "@/features/cart/cartSlice"
 
 export default function ProductDetails() {
   const params = useParams();
