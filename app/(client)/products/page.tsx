@@ -5,19 +5,12 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "@/features/cart/cartSlice";
 import CheckoutPopup from "@/components/CheckoutPopup"; // popup import
 import Link from "next/link";
+import {Product as CartProduct} from "@/features/cart/cartSlice"
 
-interface Product {
-  _id: string;
-  title: string;
-  subtitle: string;
-  price: number;
-  description: string;
-  image: string;
-}
 
 function Product() {
   const dispatch = useDispatch();
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<CartProduct[]>([]);
   const [loading, setLoading] = useState(true);
 
   // BUY NOW POPUP STATE
@@ -65,7 +58,7 @@ function Product() {
       <div className="grid gap-6 
           grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 bg-white">
 
-        {products.map((product: Product) => (
+        {products.map((product: CartProduct) => (
           <div
             key={product._id}
             className="bg-[#F5F5F5] p-4 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col"
@@ -86,7 +79,7 @@ function Product() {
               <p className="font-semibold text-[#111111]">{product.title}</p>
               <p className="font-semibold text-[#111111]">{product.subtitle}</p>
               <p className="text-xl font-bold text-[#CC071E]">${product.price.toFixed(2)}</p>
-              <p className="text-sm text-[#666666] line-clamp-3">{product.description}</p>
+              <p className="text-sm text-[#666666] line-clamp-3">{product.details}</p>
             </div>
 
             <div className="grid gap-2 mt-auto">
