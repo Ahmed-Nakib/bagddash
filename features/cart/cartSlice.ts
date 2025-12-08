@@ -5,7 +5,7 @@ export interface Product {
   title: string;
   subtitle: string;
   price: number;
-  description: string;
+  details: string;
   image: string;
   quantity?: number;
 }

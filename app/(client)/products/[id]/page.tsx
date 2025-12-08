@@ -6,22 +6,15 @@ import { useRouter, useParams } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/features/cart/cartSlice";
 import CheckoutPopup from "@/components/CheckoutPopup";
+import type { Product as CartProduct } from "@/features/cart/cartSlice";
 
-interface Product {
-  _id: string;
-  title: string;
-  subtitle: string;
-  price: number;
-  details: string;
-  image?: string;
-}
 
 export default function ProductDetails() {
   const params = useParams();
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const [product, setProduct] = useState<Product | null>(null);
+  const [product, setProduct] = useState<CartProduct | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [openPopup, setOpenPopup] = useState(false);
