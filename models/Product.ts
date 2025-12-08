@@ -4,7 +4,7 @@ export interface IProduct extends Document {
   title: string;
   subtitle: string;
   price: number;
-  description: string;
+  details: string;
   image: string;
 }
 
@@ -13,7 +13,7 @@ const ProductSchema = new Schema<IProduct>(
     title: String,
     subtitle: String,
     price: Number,
-    description: String,
+    details: String,
     image: String,
   },
   { timestamps: true }
