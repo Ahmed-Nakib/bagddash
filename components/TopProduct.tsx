@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/features/cart/cartSlice";
-import CheckoutPopup from "@/components/CheckoutPopup"; // popup import
+import CheckoutPopup from "@/components/CheckoutPopup"; 
 import {Product as CartProduct} from "@/features/cart/cartSlice"
+import Link from "next/link";
 
 
 function TopProduct() {
@@ -47,7 +48,6 @@ function TopProduct() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
 
-      {/* POPUP OPEN হলে */}
       {openPopup && (
         <CheckoutPopup
           total={selectedProductTotal}
@@ -64,12 +64,14 @@ function TopProduct() {
             className="bg-[#F5F5F5] p-4 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col"
           >
             <div className="relative w-full aspect-square h-auto max-h-64 mb-4">
+              <Link href={`/products/${product._id}`}>
               <Image
                 src={product.image}
                 alt={product.title}
                 fill
                 className="object-contain rounded-lg"
               />
+              </Link>
             </div>
 
             <div className="flex flex-col gap-1 mb-4">
