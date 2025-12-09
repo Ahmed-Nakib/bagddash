@@ -1,6 +1,8 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function AboutPage() {
   return (
@@ -22,7 +24,7 @@ export default function AboutPage() {
 
           <div className="relative w-full h-[300px] md:h-[400px] rounded-2xl overflow-hidden shadow-xl">
             <Image
-              src="/about-fashion.jpg"
+              src="/about.png"
               alt="Bagddash Fashion"
               fill
               className="object-cover"
@@ -92,13 +94,13 @@ export default function AboutPage() {
           <h2 className="text-3xl md:text-4xl font-bold">
             Join the Bagddash Fashion Revolution
           </h2>
-          <p className="mt-4 text-lg text-white/90">
+          <p className="my-4 text-lg text-white/90">
             Discover the perfect blend of style, comfort, and confidence with us.
           </p>
-
-          <button className="mt-8 bg-white text-primary font-semibold px-8 py-3 rounded-full hover:bg-gray-100 transition">
+          
+          <Link href={"/products"} className="bg-[#CC071E] hover:bg-[#990613] px-6  py-3 rounded-md ">
             Shop Now
-          </button>
+          </Link>
         </div>
       </section>
     </div>

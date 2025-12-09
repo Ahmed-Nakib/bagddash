@@ -7,14 +7,14 @@ export async function middleware(req: NextRequest) {
   const path = req.nextUrl.pathname;
 
   // Protected routes
-  const protectedRoutes = ["/dashboard", "/dashboard/admin"];
+  const protectedRoutes = ["/dashboard"];
 
   if (!token && protectedRoutes.includes(path)) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
 
   // Admin protection
-  if (path.startsWith("/dashboard/admin") && token?.role !== "admin") {
+  if (path.startsWith("/dashboard") && token?.role !== "admin") {
     return NextResponse.redirect(new URL("/dashboard", req.url));
   }
 
