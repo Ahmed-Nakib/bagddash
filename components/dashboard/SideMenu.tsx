@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { signOut } from "next-auth/react";
 import { useState } from "react";
 import { Menu } from "lucide-react";
 
@@ -77,7 +76,6 @@ export default function SideNav() {
 
           {/* Logout */}
           <button
-            onClick={() => signOut({ callbackUrl: "/login" })}
             className="
               mt-auto flex items-center gap-3 px-4 py-3 rounded-lg
               bg-red-600 hover:bg-red-700 transition-all text-sm font-medium
