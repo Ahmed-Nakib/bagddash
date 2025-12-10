@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import { Menu, X, ShoppingCart, Search } from "lucide-react";
+import { Menu, X, ShoppingCart, Search, LogInIcon, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -150,6 +150,10 @@ export default function Navbar() {
           >
             <Search className="h-5 w-5 text-[#111111] hover:text-[#990613]" />
           </button>
+
+          <Link href={"/login"}>  
+          <User/>
+          </Link>
         </div>
       </div>
 

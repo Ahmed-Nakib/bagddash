@@ -34,11 +34,20 @@ export default function CreateProduct() {
 
     const data = await res.json();
 
-    if (data.success) {
-      alert("Product Created");
-    } else {
+   if (data.success) {
+  alert("Product Created");
+  setForm({
+    title: "",
+    subtitle: "",
+    price: "",
+    details: "",
+    image: null,
+  });
+}
+else {
       alert(data.error);
     }
+
   }
 
   return (
@@ -48,12 +57,14 @@ export default function CreateProduct() {
       <input
         className="border p-2 w-full"
         placeholder="Title"
+        value={form.title}
         onChange={(e) => setForm({ ...form, title: e.target.value })}
       />
 
       <input
         className="border p-2 w-full"
         placeholder="Subtitle"
+        value={form.subtitle}
         onChange={(e) => setForm({ ...form, subtitle: e.target.value })}
       />
 
@@ -61,12 +72,14 @@ export default function CreateProduct() {
         className="border p-2 w-full"
         type="number"
         placeholder="Price"
+        value={form.price}
         onChange={(e) => setForm({ ...form, price: e.target.value })}
       />
 
       <textarea
         className="border p-2 w-full"
         placeholder="Details"
+        value={form.details}
         onChange={(e) => setForm({ ...form, details: e.target.value })}
       />
 

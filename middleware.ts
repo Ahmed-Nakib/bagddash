@@ -1,26 +1,15 @@
-import { getToken } from "next-auth/jwt";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
-export async function middleware(req: NextRequest) {
-  const token = await getToken({ req });
 
-  const path = req.nextUrl.pathname;
-
-  // Protected routes
-  const protectedRoutes = ["/dashboard"];
-
-  if (!token && protectedRoutes.includes(path)) {
-    return NextResponse.redirect(new URL("/login", req.url));
-  }
-
-  // Admin protection
-  if (path.startsWith("/dashboard") && token?.role !== "admin") {
-    return NextResponse.redirect(new URL("/dashboard", req.url));
-  }
-
-  return NextResponse.next();
+export function middleware(req: NextRequest) {
+// Example: redirect if trying to access /admin and no token cookie
+const token = req.cookies.get('token')?.value;
+if (req.nextUrl.pathname.startsWith('/admin')) {
+if (!token) return NextResponse.redirect(new URL('/login', req.url));
+}
+return NextResponse.next();
 }
 
-export const config = {
-  matcher: ["/dashboard/:path*"],
-};
+
+export const config = { matcher: ['/admin/:path*', '/dashboard/:path*'] };
