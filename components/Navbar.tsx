@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import { Menu, X, ShoppingCart, Search, LogInIcon, User } from "lucide-react";
+import { Menu, X, ShoppingCart, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -130,16 +130,19 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-x-4">
+        <div className="flex items-center gap-2">
           <div className="relative flex justify-center ">
+            <button className="cursor-pointer">
               <Link href="/cart">
-                <ShoppingCart className="h-5 w-5 text-[#111111] hover:text-[#990613]" />
+                <ShoppingCart className="h-5 w-5 text-[#111111]" />
+              </Link>
+            </button>
+
             {mounted && cartCount > 0 && (
-              <span className="absolute -top-4 -right-2 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold text-white bg-red-600 rounded-full">
+              <span className="absolute -top-4 -right-2 inline-flex items-center justify-center px-2 py-1 text-xs font-bold text-white bg-red-600 rounded-full">
                 {cartCount}
               </span>
             )}
-            </Link>
           </div>
 
           {/* Search Button */}
@@ -148,12 +151,8 @@ export default function Navbar() {
             className="cursor-pointer px-1"
             onClick={handleOpen}
           >
-            <Search className="h-5 w-5 text-[#111111] hover:text-[#990613]" />
+            <Search className="h-5 w-5 text-[#111111]" />
           </button>
-
-          <Link href={"/login"}>  
-          <User/>
-          </Link>
         </div>
       </div>
 

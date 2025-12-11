@@ -1,135 +1,66 @@
-'use client';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+"use client";
 
-interface FormState {
-    email: string;
-    password: string;
-}
+import { signIn } from "next-auth/react";
+import { useState } from "react";
 
 export default function LoginPage() {
-    const router = useRouter();
-    const [form, setForm] = useState<FormState>({ email: '', password: '' });
-    const [msg, setMsg] = useState('');
-    const [isError, setIsError] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+  const [err, setErr] = useState("");
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
-    };
+  async function login(e: any) {
+    e.preventDefault();
 
-    async function submit(e: React.FormEvent) {
-        e.preventDefault();
-        setMsg('');
-        setIsError(false);
-        setIsLoading(true);
+    const res = await signIn("credentials", {
+      redirect: false,
+      email,
+      password: pass,
+    });
 
-        try {
-            const res = await fetch('/api/auth/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(form),
-            });
-
-            const data = await res.json();
-
-            if (!res.ok) {
-                setIsError(true);
-                setMsg(data?.error || 'প্রবেশ ব্যর্থ হয়েছে। ইমেল বা গোপন সংকেত ভুল।');
-                return;
-            }
-
-            // ✅ Token save
-            localStorage.setItem('token', data.token);
-            // ✅ Role save
-            localStorage.setItem('role', data.user.role);
-
-            setIsError(false);
-            setMsg('প্রবেশ সফল হয়েছে! ড্যাশবোর্ডে পাঠানো হচ্ছে...');
-
-            // Role-based redirect
-            setTimeout(() => {
-                if (data.user.role === 'admin') {
-                    router.push('/admin-dashboard');
-                } else {
-                    router.push('/dashboard');
-                }
-            }, 1000);
-
-        } catch (error) {
-            setIsError(true);
-            setMsg('যোগাযোগ ত্রুটি: সার্ভারের সাথে সংযোগ করা যায়নি।');
-        } finally {
-            setIsLoading(false);
-        }
+    if (res?.error) {
+      setErr("Email বা Password ভুল");
+      return;
     }
 
-    return (
-        <div className="flex justify-center items-center min-h-screen bg-gray-50 p-4">
-            <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-xl shadow-2xl border border-gray-100">
-                <h2 className="text-3xl font-extrabold text-gray-900 text-center">
-                    ব্যবহারকারী প্রবেশ (Login)
-                </h2>
+    // Save Admin Token
+    if (email === "nakib@gmail.com") {
+      localStorage.setItem("admin_token", "nakib_admin_2025");
+    }
 
-                {msg && (
-                    <p className={`p-3 rounded-lg text-sm font-medium ${isError ? 'bg-red-100 text-red-700 border border-red-300' : 'bg-green-100 text-green-700 border border-green-300'}`}>
-                        {msg}
-                    </p>
-                )}
+    window.location.href = "/dashboard";
+  }
 
-                <form onSubmit={submit} className="space-y-4">
-                    <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">ইমেল ঠিকানা</label>
-                        <input
-                            id="email"
-                            name="email"
-                            type="email"
-                            required
-                            value={form.email}
-                            onChange={handleChange}
-                            placeholder="example@email.com"
-                            className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                            disabled={isLoading}
-                        />
-                    </div>
+  return (
+    <div className="flex items-center justify-center h-screen bg-gray-100">
+      <form
+        onSubmit={login}
+        className="bg-white p-8 rounded-2xl shadow-xl w-96 space-y-4"
+      >
+        <h1 className="text-2xl font-bold text-center">Login</h1>
 
-                    <div>
-                        <label htmlFor="password" className="block text-sm font-medium text-gray-700">গোপন সংকেত</label>
-                        <input
-                            id="password"
-                            name="password"
-                            type="password"
-                            required
-                            value={form.password}
-                            onChange={handleChange}
-                            placeholder="আপনার গোপন সংকেত"
-                            className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                            disabled={isLoading}
-                        />
-                    </div>
+        <input
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="w-full p-3 border rounded-lg"
+          placeholder="Email"
+        />
 
-                    <button
-                        type="submit"
-                        className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white transition duration-150 ease-in-out 
-                            ${isLoading ? 'bg-indigo-400 cursor-not-allowed' : 'bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'}`}
-                        disabled={isLoading}
-                    >
-                        {isLoading ? (
-                            <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                            </svg>
-                        ) : 'প্রবেশ করুন (Login)'}
-                    </button>
-                </form>
+        <input
+          required
+          type="password"
+          value={pass}
+          onChange={(e) => setPass(e.target.value)}
+          className="w-full p-3 border rounded-lg"
+          placeholder="Password"
+        />
 
-                <p className="text-center text-sm text-gray-600">
-                    এখনো অ্যাকাউন্ট নেই? 
-                    <button onClick={() => router.push('/signup')} className="ml-1 font-medium text-indigo-600 hover:text-indigo-500">
-                        নিবন্ধন করুন
-                    </button>
-                </p>
-            </div>
-        </div>
-    );
+        <button className="w-full bg-black text-white p-3 rounded-lg">
+          Login
+        </button>
+
+        {err && <p className="text-red-500 text-center">{err}</p>}
+      </form>
+    </div>
+  );
 }
